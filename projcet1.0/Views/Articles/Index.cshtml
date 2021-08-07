@@ -1,0 +1,88 @@
+﻿@model IEnumerable<projcet1._0.Models.Article>
+
+@{
+    ViewData["Title"] = "Index";
+}
+    <div class="main-header">
+        <h1 class="but1">Articles</h1>
+        <p class=" but1">Use this page to find anything you need</p>
+        <p>
+            <a asp-action="Create" class=" offset-sm-10 but">Create New</a>
+        </p>
+    </div>
+
+    <!--<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Author)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Text)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Img)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Categories)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Data)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Img)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categories.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>-->
+
+    
+    <div class="content">
+        @foreach (var item in Model)
+        {
+            <div class="article">
+                <a asp-action="Details" asp-route-id="@item.Id"><img src="@item.Img" /></a>
+                <a class="text-dark" asp-action="Details" asp-route-id="@item.Id"><h3>@item.Name</h3></a>
+                <div class="geo-root">
+
+                </div>
+                <a class="text-data" asp-action="" asp-route-id="@item.Data">@item.Data</a>
+            </div>
+        }
+    </div>

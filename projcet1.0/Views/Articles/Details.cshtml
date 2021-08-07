@@ -1,0 +1,35 @@
+﻿@model projcet1._0.Models.Article
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div>
+    <div class="content">
+        <ul>
+            <li><h1 class="zhopa">"@Model.Name" | @Model.Categories.CategoryOfArticle</h1></li>
+
+            <li><h4 class="zhopa">Автор: @Model.Author</h4></li>
+            <li><a class="hy"><img src="@Model.Img"></a></li>
+            <li>
+                <a class="zhopa">
+                    @Model.Text
+                </a>
+            </li>
+            <li><p class="zhopa">@Model.Data</p></li>
+        </ul>
+    </div>
+</div>
+<div class="content">
+    @if (ViewBag.CanEditArticle)
+    {
+        <ul>
+            <li>
+                <a class="but-1" asp-action="Edit" asp-route-id="@Model.Id"> Edit </a>
+                <a class="but-1" asp-action="Delete" asp-route-id="@Model.Id"> Delete </a>
+            </li>
+        </ul>
+    }
+    <a class="but-1 butter" asp-action="Index">Back to List</a>
+</div>
+
+
