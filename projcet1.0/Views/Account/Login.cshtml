@@ -10,10 +10,12 @@
     ViewData["Title"] = "Log in";
 }
 
-<h2>@ViewData["Title"].</h2>
+
 <div class="row">
+    
     <div class="col-md-8">
         <section>
+            <h2>@ViewData["Title"].</h2>
             <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
                 <h4>Use a local account to log in.</h4>
                 <hr />
@@ -47,8 +49,8 @@
                         <button type="submit" class="btn btn-default hover-but">Log in</button>
                     </div>
                 </div>
-                <p>
-                    <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
+                <p class="new-user">
+                    <a class="new-user" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
                 </p>
             </form>
         </section>

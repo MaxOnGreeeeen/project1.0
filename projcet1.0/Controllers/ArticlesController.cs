@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -70,6 +71,7 @@ namespace projcet1._0.Controllers
         }
 
         // GET: Articles/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewBag.CategoryId = new SelectList(this._context.Categories, "Id", "CategoryOfArticle");
@@ -81,12 +83,14 @@ namespace projcet1._0.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create(ArticleCreateModel model)
         {
             if (ModelState.IsValid)
             {
                 var article = new Article
                 {
+                   
                     Name = model.Name,
                     Location = model.Location,
                     Text = model.Text,
@@ -95,7 +99,6 @@ namespace projcet1._0.Controllers
                 };
 
                 article.Author = this.userManager.GetUserId(this.httpContextAccessor.HttpContext.User);
-
                 var fileName = Path.GetFileName(ContentDispositionHeaderValue.Parse(model.File.ContentDisposition).FileName.Trim('"'));
                 var fileExt = Path.GetExtension(fileName);
                 if (!ArticlesController.AllowedExtensions.Contains(fileExt))

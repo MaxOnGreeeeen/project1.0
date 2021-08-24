@@ -66,7 +66,7 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
     background: #9cffff;
-    background: url("/Content/body.jpg") no-repeat;
+    background: url("/Content/Wall.png") no-repeat;
     background-size: 100%;
 }
 .footer {
@@ -125,13 +125,14 @@ div.content div.article img
     }
     div.content div.article a.text-dark h3 {
         font-size: 20px;
-        color: #ff79f2;
+        color: #ACA8CB;
         font-weight: 400;
         text-decoration: none;
     }
         div.content div.article a.text-dark h3:hover {
             color: #6475f2;
             text-decoration: none;
+         
         }
 .text-dan a{
     font-size: 20px;
@@ -180,8 +181,7 @@ div.main-header p a {
     color: #ffd9f2;
 }
 div.content {
-    background: #9cffff;
-
+    background: #EEFFEB;
 }
 div.content1 {
     background: #9cffff;
@@ -299,4 +299,17 @@ div div.content ul li a.but-1 {
     font-weight: lighter;
     color: darkslategrey;
 }
+.btn-1 {
+    border-radius: 4px;
+    background-color: #0095f6;
+    font-weight: bold;
+    padding: .5rem 1rem;
+    border: none;
+}
+
+ul.nav.navbar-nav.navbar-right li a.text-blue {
+    color: #0095f6 !important;
+    font-weight: bold;
+}
+
 

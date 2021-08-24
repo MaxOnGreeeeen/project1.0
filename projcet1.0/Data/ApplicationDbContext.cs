@@ -18,8 +18,15 @@ namespace projcet1._0.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<ArticleLike>()
+              .HasKey(x => new { x.LikeID, x.ArticleID });
         }
 
         public DbSet<projcet1._0.Models.Map> Map { get; set; }
+
+        public DbSet<Like> Likes { get; set; }
+
+        public DbSet<projcet1._0.Models.ArticleLike> ArticleLike { get; set; }
+
     }
 }

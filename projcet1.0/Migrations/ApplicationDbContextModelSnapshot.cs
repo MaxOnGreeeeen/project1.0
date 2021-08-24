@@ -234,6 +234,12 @@ namespace projcet1._0.Migrations
                     b.Property<string>("Img")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsLiked")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Liked")
+                        .HasColumnType("int");
+
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
@@ -252,6 +258,21 @@ namespace projcet1._0.Migrations
                     b.ToTable("Articles");
                 });
 
+            modelBuilder.Entity("projcet1._0.Models.ArticleLike", b =>
+                {
+                    b.Property<int>("LikeID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ArticleID")
+                        .HasColumnType("int");
+
+                    b.HasKey("LikeID", "ArticleID");
+
+                    b.HasIndex("ArticleID");
+
+                    b.ToTable("ArticleLike");
+                });
+
             modelBuilder.Entity("projcet1._0.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -268,6 +289,26 @@ namespace projcet1._0.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("projcet1._0.Models.Like", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("projcet1._0.Models.Map", b =>
@@ -359,7 +400,48 @@ namespace projcet1._0.Migrations
                     b.Navigation("Categories");
                 });
 
+            modelBuilder.Entity("projcet1._0.Models.ArticleLike", b =>
+                {
+                    b.HasOne("projcet1._0.Models.Article", "Article")
+                        .WithMany("Likes")
+                        .HasForeignKey("ArticleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("projcet1._0.Models.Like", "Like")
+                        .WithMany("Articles")
+                        .HasForeignKey("LikeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Article");
+
+                    b.Navigation("Like");
+                });
+
+            modelBuilder.Entity("projcet1._0.Models.Like", b =>
+                {
+                    b.HasOne("projcet1._0.Models.ApplicationUser", null)
+                        .WithMany("Articles")
+                        .HasForeignKey("ApplicationUserId");
+                });
+
+            modelBuilder.Entity("projcet1._0.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Articles");
+                });
+
+            modelBuilder.Entity("projcet1._0.Models.Article", b =>
+                {
+                    b.Navigation("Likes");
+                });
+
             modelBuilder.Entity("projcet1._0.Models.Category", b =>
+                {
+                    b.Navigation("Articles");
+                });
+
+            modelBuilder.Entity("projcet1._0.Models.Like", b =>
                 {
                     b.Navigation("Articles");
                 });

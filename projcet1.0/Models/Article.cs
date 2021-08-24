@@ -27,6 +27,8 @@ namespace projcet1._0.Models
         public Category Categories { set; get; }
 
         public DateTime Data { set; get; }
+        public bool IsLiked { set; get; }
+        public ICollection<ArticleLike> Likes { get; set; }
 
     }
 }
